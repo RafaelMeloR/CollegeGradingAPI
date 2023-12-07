@@ -19,8 +19,8 @@ import com.vanier.grading_api.service.GradeService;
 @RequestMapping("grade")
 public class GradeController {
 
-    @Autowired
-    private GradeService service;
+    //@Autowired
+    //private GradeService service;
 
     @PostMapping("/save")
     public ResponseEntity<Assignature> save(@RequestBody Grade grade) {
