@@ -17,8 +17,6 @@ public class AssignatureServiceImpl implements AssignatureService {
     // Save assignature
     @Override
     public Assignature save(Assignature assignature) {
-
-        // To finish
         return assignatureRepository.save(assignature);
     }
 
@@ -41,5 +39,6 @@ public class AssignatureServiceImpl implements AssignatureService {
         Optional<Assignature> assignature = assignatureRepository.findById(id);
         assignature.ifPresent(assignatureToDelete -> assignatureRepository.delete(assignatureToDelete));
     }
+
 
 }

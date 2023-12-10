@@ -27,36 +27,44 @@ public class AssignatureController {
     // Save assignature
     @PostMapping("/save")
     public ResponseEntity<Assignature> save(@RequestBody Assignature assignature) {
-        Assignature SavedAssignature = assignatureService.save(assignature);
-        return SavedAssignature != null
-                ? new ResponseEntity<>(SavedAssignature, HttpStatus.CREATED)
-                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+
+        Assignature savedAssignature = assignatureService.save(assignature);
+        return savedAssignature != null 
+            ? new ResponseEntity<>(savedAssignature, HttpStatus.CREATED)
+            : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+
     }
 
     // Find assignature by id
     @GetMapping("/findById")
     public ResponseEntity<Assignature> findById(@RequestParam Long id) {
         Optional<Assignature> assignature = assignatureService.findById(id);
-        return assignature.map(
-                value -> new ResponseEntity<>(value, HttpStatus.ACCEPTED))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-
+        return assignature.map( 
+            //Response if data is found
+            value -> new ResponseEntity<>(value, HttpStatus.ACCEPTED))
+            //Response when unsuccesful
+            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     // Update assignature by id
     @PutMapping("/update")
     public ResponseEntity<Assignature> update(@RequestBody Assignature assignature) {
-
-        // to check if assignature exists and if not return 404 also check if is
-        // working :D
-        assignatureService.update(assignature.getId());
-        return new ResponseEntity<>(HttpStatus.OK);
+        if(assignature.getId() == assignatureService.findById(assignature.getId()).get().getId()){
+            Assignature updatedAssignature = assignatureService.save(assignature);
+            return new ResponseEntity<>(updatedAssignature, HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     // Delete assignature by id
     @DeleteMapping("/delete")
     public ResponseEntity<Assignature> delete(@RequestParam Long id) {
-        assignatureService.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        Optional<Assignature> deletedAssignature = assignatureService.findById(id);
+        if(deletedAssignature.isPresent()){
+            assignatureService.delete(id);
+            return new ResponseEntity<>(deletedAssignature.get(), HttpStatus.ACCEPTED);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+
     }
 }
