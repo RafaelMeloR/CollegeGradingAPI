@@ -16,26 +16,25 @@ public class AssignatureServiceImpl implements AssignatureService {
 
     @Override
     public Assignature save(Assignature assignature) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        return assignatureRepository.save(assignature);
     }
 
     @Override
     public Optional<Assignature> findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return assignatureRepository.findById(id);
     }
 
     @Override
     public void update(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        Optional<Assignature> assigToUpdate = assignatureRepository.findById(id);
+        assigToUpdate.ifPresent(value -> assignatureRepository.save(value)); 
     }
 
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        Optional<Assignature> assigToDelete = assignatureRepository.findById(id);
+        assigToDelete.ifPresent(value -> assignatureRepository.delete(value)); 
     }
+
 
 }

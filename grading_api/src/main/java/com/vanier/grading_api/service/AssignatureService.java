@@ -12,4 +12,5 @@ public interface AssignatureService {
     void update(Long id);
 
     void delete(Long id);
+
 }
