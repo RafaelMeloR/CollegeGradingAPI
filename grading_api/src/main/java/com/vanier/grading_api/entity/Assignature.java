@@ -1,5 +1,7 @@
 package com.vanier.grading_api.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,9 +22,9 @@ public class Assignature {
     private Long id;
     private String name;
     private String code;
-    private String hours; // hour per semester
+    private String hours;
     private String credits;
-    private String prerequisites;
-    private String corequisites;
+    private List<String> prerequisites;
+    private List<String> corequisites;
     private String status;
 }

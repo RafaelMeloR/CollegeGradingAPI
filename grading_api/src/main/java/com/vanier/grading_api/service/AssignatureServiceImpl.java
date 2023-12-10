@@ -14,28 +14,32 @@ public class AssignatureServiceImpl implements AssignatureService {
     @Autowired
     private AssignatureRepository assignatureRepository;
 
+    // Save assignature
     @Override
     public Assignature save(Assignature assignature) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+
+        // To finish
+        return assignatureRepository.save(assignature);
     }
 
+    // Find assignature by id
     @Override
     public Optional<Assignature> findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return assignatureRepository.findById(id);
     }
 
+    // Update assignature by id
     @Override
     public void update(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        Optional<Assignature> assignature = assignatureRepository.findById(id);
+        assignature.ifPresent(assignatureToUpdate -> assignatureRepository.save(assignatureToUpdate));
     }
 
+    // Delete assignature by id
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        Optional<Assignature> assignature = assignatureRepository.findById(id);
+        assignature.ifPresent(assignatureToDelete -> assignatureRepository.delete(assignatureToDelete));
     }
 
 }
