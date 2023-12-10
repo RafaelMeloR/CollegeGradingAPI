@@ -13,28 +13,31 @@ public class ProfessorServiceImpl implements ProfessorService {
     @Autowired
     private ProfessorRepository professorRepository;
 
+    // Save professor
     @Override
     public Professor save(Professor professor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        // To finish
+        return professorRepository.save(professor);
     }
 
+    // Find professor by id
     @Override
     public Optional<Professor> findById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+        return professorRepository.findById(id);
     }
 
+    // Update professor by id
     @Override
     public void update(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        Optional<Professor> professor = professorRepository.findById(id);
+        professor.ifPresent(professorToUpdate -> professorRepository.save(professorToUpdate));
     }
 
+    // Delete professor by id
     @Override
     public void delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        Optional<Professor> professor = professorRepository.findById(id);
+        professor.ifPresent(professorToDelete -> professorRepository.delete(professorToDelete));
     }
 
 }

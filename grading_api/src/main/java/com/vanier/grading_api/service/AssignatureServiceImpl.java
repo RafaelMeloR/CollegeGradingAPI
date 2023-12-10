@@ -14,26 +14,30 @@ public class AssignatureServiceImpl implements AssignatureService {
     @Autowired
     private AssignatureRepository assignatureRepository;
 
+    // Save assignature
     @Override
     public Assignature save(Assignature assignature) {
         return assignatureRepository.save(assignature);
     }
 
+    // Find assignature by id
     @Override
     public Optional<Assignature> findById(Long id) {
         return assignatureRepository.findById(id);
     }
 
+    // Update assignature by id
     @Override
     public void update(Long id) {
-        Optional<Assignature> assigToUpdate = assignatureRepository.findById(id);
-        assigToUpdate.ifPresent(value -> assignatureRepository.save(value)); 
+        Optional<Assignature> assignature = assignatureRepository.findById(id);
+        assignature.ifPresent(assignatureToUpdate -> assignatureRepository.save(assignatureToUpdate));
     }
 
+    // Delete assignature by id
     @Override
     public void delete(Long id) {
-        Optional<Assignature> assigToDelete = assignatureRepository.findById(id);
-        assigToDelete.ifPresent(value -> assignatureRepository.delete(value)); 
+        Optional<Assignature> assignature = assignatureRepository.findById(id);
+        assignature.ifPresent(assignatureToDelete -> assignatureRepository.delete(assignatureToDelete));
     }
 
 

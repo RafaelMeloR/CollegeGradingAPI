@@ -24,18 +24,21 @@ public class AssignatureController {
     @Autowired
     private AssignatureService assignatureService;
 
+    // Save assignature
     @PostMapping("/save")
     public ResponseEntity<Assignature> save(@RequestBody Assignature assignature) {
+
         Assignature savedAssignature = assignatureService.save(assignature);
         return savedAssignature != null 
             ? new ResponseEntity<>(savedAssignature, HttpStatus.CREATED)
             : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+
     }
 
+    // Find assignature by id
     @GetMapping("/findById")
     public ResponseEntity<Assignature> findById(@RequestParam Long id) {
         Optional<Assignature> assignature = assignatureService.findById(id);
-
         return assignature.map( 
             //Response if data is found
             value -> new ResponseEntity<>(value, HttpStatus.ACCEPTED))
@@ -43,6 +46,7 @@ public class AssignatureController {
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    // Update assignature by id
     @PutMapping("/update")
     public ResponseEntity<Assignature> update(@RequestBody Assignature assignature) {
         if(assignature.getId() == assignatureService.findById(assignature.getId()).get().getId()){
@@ -52,6 +56,7 @@ public class AssignatureController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    // Delete assignature by id
     @DeleteMapping("/delete")
     public ResponseEntity<Assignature> delete(@RequestParam Long id) {
         Optional<Assignature> deletedAssignature = assignatureService.findById(id);
@@ -60,5 +65,6 @@ public class AssignatureController {
             return new ResponseEntity<>(deletedAssignature.get(), HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+
     }
 }
