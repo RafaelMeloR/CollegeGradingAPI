@@ -17,6 +17,7 @@ public class StudentServiceImpl implements StudentService{
     @Autowired private AssignatureRepository assignatureRepository;
     @Autowired private GradeRepository gradeRepository;
 
+    // Save student
     @Override
     public Student save(Student student) {
 
@@ -33,17 +34,20 @@ public class StudentServiceImpl implements StudentService{
         return studentRepository.save(student);
     }
 
+    // Find student by id
     @Override
     public Optional<Student> findById(Long id) {
         return studentRepository.findById(id);
     }
 
+    // Update student by id
     @Override
     public void update(Long id) {
         Optional<Student> student = studentRepository.findById(id);
         student.ifPresent( studentToUpdate -> studentRepository.save(studentToUpdate));
     }
 
+    // Delete student by id
     @Override
     public void delete(Long id) {
        Optional<Student> student = studentRepository.findById(id);
