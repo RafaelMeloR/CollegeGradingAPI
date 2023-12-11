@@ -1,0 +1,1336 @@
+{
+	"info": {
+		"_postman_id": "d9d234cb-a89c-41fe-a512-5be064247398",
+		"name": "Grading API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30228492"
+	},
+	"item": [
+		{
+			"name": "Assignature",
+			"item": [
+				{
+					"name": "FindById",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/assignature/findById?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignature",
+								"findById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Assignature FindById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/assignature/findById?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignature",
+										"findById"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:02:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Math\",\n    \"code\": \"MATH101\",\n    \"hours\": \"100\",\n    \"credits\": \"4\",\n    \"prerequisites\": [\n        \"MATH100\"\n    ],\n    \"corequisites\": [\n        \"LAB101\"\n    ],\n    \"status\": \"Active\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Math\",\r\n  \"code\": \"CSCI101\",\r\n  \"hours\": \"1\",\r\n  \"credits\": \"4\",\r\n  \"prerequisites\": [\"CSCI100\", \"MATH101\"],\r\n  \"corequisites\": [\"LAB101\"],\r\n  \"status\": \"Active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/assignature/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignature",
+								"save"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Assignature Save",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Math\",\r\n  \"code\": \"MATH101\",\r\n  \"hours\": \"100\",\r\n  \"credits\": \"4\",\r\n  \"prerequisites\": [\"MATH100\"],\r\n  \"corequisites\": [\"LAB101\"],\r\n  \"status\": \"Active\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/assignature/save",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignature",
+										"save"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:04:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"name\": \"Math\",\n    \"code\": \"MATH101\",\n    \"hours\": \"100\",\n    \"credits\": \"4\",\n    \"prerequisites\": [\n        \"MATH100\"\n    ],\n    \"corequisites\": [\n        \"LAB101\"\n    ],\n    \"status\": \"Active\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"1\",\r\n  \"name\": \"Math\",\r\n  \"code\": \"MATH101\",\r\n  \"hours\": \"200\",\r\n  \"credits\": \"4\",\r\n  \"prerequisites\": [\"MATH100\"],\r\n  \"corequisites\": [\"LAB101\"],\r\n  \"status\": \"Active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":\"1\",\r\n  \"name\": \"Math\",\r\n  \"code\": \"MATH101\",\r\n  \"hours\": \"200\",\r\n  \"credits\": \"4\",\r\n  \"prerequisites\": [\"MATH100\"],\r\n  \"corequisites\": [\"LAB101\"],\r\n  \"status\": \"Active\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/assignature/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignature",
+										"update"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:03:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Math\",\n    \"code\": \"MATH101\",\n    \"hours\": \"200\",\n    \"credits\": \"4\",\n    \"prerequisites\": [\n        \"MATH100\"\n    ],\n    \"corequisites\": [\n        \"LAB101\"\n    ],\n    \"status\": \"Active\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/assignature/delete?id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"assignature",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/assignature/delete?id=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"assignature",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:05:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"name\": \"Math\",\n    \"code\": \"MATH101\",\n    \"hours\": \"100\",\n    \"credits\": \"4\",\n    \"prerequisites\": [\n        \"MATH100\"\n    ],\n    \"corequisites\": [\n        \"LAB101\"\n    ],\n    \"status\": \"Active\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Professor",
+			"item": [
+				{
+					"name": "User Professor Get",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/professor/findById?id=7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professor",
+								"findById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "User Professor Get",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/professor/findById?id=7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"professor",
+										"findById"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:19:02 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 7,\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"assignatures\": [\n        {\n            \"id\": 1,\n            \"name\": \"Math\",\n            \"code\": \"MATH101\",\n            \"hours\": \"100\",\n            \"credits\": \"4\",\n            \"prerequisites\": [\n                \"MATH100\"\n            ],\n            \"corequisites\": [\n                \"LAB101\"\n            ],\n            \"status\": \"Active\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Save",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 8,\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"assignatures\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"Math\",\r\n            \"code\": \"MATH101\",\r\n            \"hours\": \"100\",\r\n            \"credits\": \"4\",\r\n            \"prerequisites\": [\r\n                \"MATH100\"\r\n            ],\r\n            \"corequisites\": [\r\n                \"LAB101\"\r\n            ],\r\n            \"status\": \"Active\"\r\n        }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/professor/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professor",
+								"save"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Professor Save",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n \"id\": 1,\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"email\": \"john.doe@example.com\",\r\n  \"assignatures\": [\r\n  {\r\n    \"id\": 1,\r\n    \"name\": \"Math\",\r\n    \"code\": \"MATH101\",\r\n    \"hours\": \"100\",\r\n    \"credits\": \"4\",\r\n    \"prerequisites\": [\r\n        \"MATH100\"\r\n    ],\r\n    \"corequisites\": [\r\n        \"LAB101\"\r\n    ],\r\n    \"status\": \"Active\"\r\n}\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/professor/save",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"professor",
+										"save"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:18:31 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 7,\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"assignatures\": [\n        {\n            \"id\": 1,\n            \"name\": \"Math\",\n            \"code\": \"MATH101\",\n            \"hours\": \"100\",\n            \"credits\": \"4\",\n            \"prerequisites\": [\n                \"MATH100\"\n            ],\n            \"corequisites\": [\n                \"LAB101\"\n            ],\n            \"status\": \"Active\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 7,\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"email\": \"john.doe@exampleee.com\",\r\n    \"assignatures\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"Math\",\r\n            \"code\": \"MATH101\",\r\n            \"hours\": \"100\",\r\n            \"credits\": \"4\",\r\n            \"prerequisites\": [\r\n                \"MATH100\"\r\n            ],\r\n            \"corequisites\": [\r\n                \"LAB101\"\r\n            ],\r\n            \"status\": \"Active\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/professor/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professor",
+								"update"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 7,\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"email\": \"john.doe@example.com\",\r\n    \"assignatures\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"Math\",\r\n            \"code\": \"MATH101\",\r\n            \"hours\": \"100\",\r\n            \"credits\": \"4\",\r\n            \"prerequisites\": [\r\n                \"MATH100\"\r\n            ],\r\n            \"corequisites\": [\r\n                \"LAB101\"\r\n            ],\r\n            \"status\": \"Active\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/professor/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"professor",
+										"update"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:25:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 7,\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"assignatures\": [\n        {\n            \"id\": 1,\n            \"name\": \"Math\",\n            \"code\": \"MATH101\",\n            \"hours\": \"100\",\n            \"credits\": \"4\",\n            \"prerequisites\": [\n                \"MATH100\"\n            ],\n            \"corequisites\": [\n                \"LAB101\"\n            ],\n            \"status\": \"Active\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/professor/delete?id=7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"professor",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/professor/delete?id=7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"professor",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "7"
+										}
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:30:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 7,\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"assignatures\": [\n        {\n            \"id\": 1,\n            \"name\": \"Math\",\n            \"code\": \"MATH101\",\n            \"hours\": \"100\",\n            \"credits\": \"4\",\n            \"prerequisites\": [\n                \"MATH100\"\n            ],\n            \"corequisites\": [\n                \"LAB101\"\n            ],\n            \"status\": \"Active\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"firstName\": \"StudentName\",\r\n  \"lastName\": \"StudentLasName\",\r\n  \"email\": \"StudentName@StudentLasName.com\",\r\n  \"dateOfBirth\": \"1995-08-15\",  // Format: YYYY-MM-DD\r\n  \"phoneNumber\": \"4385252221\",\r\n  \"grades\": [\r\n  ],\r\n  \"assignatures\": [\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/student/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"save"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "save",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": 1,\r\n  \"firstName\": \"StudentName\",\r\n  \"lastName\": \"StudentLasName\",\r\n  \"email\": \"StudentName@StudentLasName.com\",\r\n  \"dateOfBirth\": \"1995-08-15\",  // Format: YYYY-MM-DD\r\n  \"phoneNumber\": \"4385252221\",\r\n  \"grades\": [\r\n  ],\r\n  \"assignatures\": [\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/student/save",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"student",
+										"save"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:40:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"StudentName\",\n    \"lastName\": \"StudentLasName\",\n    \"email\": \"StudentName@StudentLasName.com\",\n    \"dateOfBirth\": \"1995-08-15T00:00:00.000+00:00\",\n    \"phoneNumber\": \"4385252221\",\n    \"grades\": [],\n    \"assignatures\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/student/findById?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"student",
+										"findById"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:43:31 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"StudentName\",\n    \"lastName\": \"StudentLasName\",\n    \"email\": \"StudentName@StudentLasName.com\",\n    \"dateOfBirth\": \"1995-08-15T00:00:00.000+00:00\",\n    \"phoneNumber\": \"4385252221\",\n    \"grades\": [],\n    \"assignatures\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"firstName\": \"StudentName\",\r\n    \"lastName\": \"StudentLasName\",\r\n    \"email\": \"StudentName@StudentLasName.com\",\r\n    \"dateOfBirth\": \"1995-08-15T00:00:00.000+00:00\",\r\n    \"phoneNumber\": \"4385252221\",\r\n    \"grades\": [\r\n                    {\r\n            \"id\": 1,\r\n            \"idProfessor\": 101,\r\n            \"idStudent\": 201,\r\n            \"idAssignature\": 301,\r\n            \"category\": \"Midterm Exam\",\r\n            \"assesmentWeight\": 0.4,\r\n            \"gradeValue\": 85.5,\r\n            \"dateSubmission\": \"2023-01-15T12:30:00.000Z\"\r\n            }\r\n    ],\r\n    \"assignatures\": [\r\n        {\r\n            \"id\": 5,\r\n            \"name\": \"Math\",\r\n            \"code\": \"MATH101\",\r\n            \"hours\": \"100\",\r\n            \"credits\": \"4\",\r\n            \"prerequisites\": [\r\n                \"MATH100\"\r\n            ],\r\n            \"corequisites\": [\r\n                \"LAB101\"\r\n            ],\r\n            \"status\": \"Active\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/student/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"student",
+								"update"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update (add assignature)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"firstName\": \"StudentName\",\r\n    \"lastName\": \"StudentLasName\",\r\n    \"email\": \"StudentName@StudentLasName.com\",\r\n    \"dateOfBirth\": \"1995-08-15T00:00:00.000+00:00\",\r\n    \"phoneNumber\": \"4385252221\",\r\n    \"grades\": [],\r\n    \"assignatures\": [\r\n        {\r\n            \"id\": 5,\r\n            \"name\": \"Math\",\r\n            \"code\": \"MATH101\",\r\n            \"hours\": \"100\",\r\n            \"credits\": \"4\",\r\n            \"prerequisites\": [\r\n                \"MATH100\"\r\n            ],\r\n            \"corequisites\": [\r\n                \"LAB101\"\r\n            ],\r\n            \"status\": \"Active\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/student/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"student",
+										"update"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:48:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"StudentName\",\n    \"lastName\": \"StudentLasName\",\n    \"email\": \"StudentName@StudentLasName.com\",\n    \"dateOfBirth\": \"1995-08-15T00:00:00.000+00:00\",\n    \"phoneNumber\": \"4385252221\",\n    \"grades\": [],\n    \"assignatures\": [\n        {\n            \"id\": 5,\n            \"name\": \"Math\",\n            \"code\": \"MATH101\",\n            \"hours\": \"100\",\n            \"credits\": \"4\",\n            \"prerequisites\": [\n                \"MATH100\"\n            ],\n            \"corequisites\": [\n                \"LAB101\"\n            ],\n            \"status\": \"Active\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "Update (add grades)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"firstName\": \"StudentName\",\r\n    \"lastName\": \"StudentLasName\",\r\n    \"email\": \"StudentName@StudentLasName.com\",\r\n    \"dateOfBirth\": \"1995-08-15T00:00:00.000+00:00\",\r\n    \"phoneNumber\": \"4385252221\",\r\n    \"grades\": [\r\n                    {\r\n            \"id\": 1,\r\n            \"idProfessor\": 47,\r\n            \"idStudent\": 1,\r\n            \"idAssignature\": 1,\r\n            \"category\": \"Midterm Exam\",\r\n            \"assesmentWeight\": 0.4,\r\n            \"gradeValue\": 85.5,\r\n            \"dateSubmission\": \"2023-01-15T12:30:00.000Z\"\r\n            }\r\n    ],\r\n    \"assignatures\": [\r\n        {\r\n            \"id\": 5,\r\n            \"name\": \"Math\",\r\n            \"code\": \"MATH101\",\r\n            \"hours\": \"100\",\r\n            \"credits\": \"4\",\r\n            \"prerequisites\": [\r\n                \"MATH100\"\r\n            ],\r\n            \"corequisites\": [\r\n                \"LAB101\"\r\n            ],\r\n            \"status\": \"Active\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/student/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"student",
+										"update"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:51:18 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"firstName\": \"StudentName\",\n    \"lastName\": \"StudentLasName\",\n    \"email\": \"StudentName@StudentLasName.com\",\n    \"dateOfBirth\": \"1995-08-15T00:00:00.000+00:00\",\n    \"phoneNumber\": \"4385252221\",\n    \"grades\": [\n        {\n            \"id\": 1,\n            \"idProfessor\": 47,\n            \"idStudent\": 1,\n            \"idAssignature\": 1,\n            \"category\": \"Midterm Exam\",\n            \"assesmentWeight\": 0.4,\n            \"gradeValue\": 85.5,\n            \"dateSubmission\": \"2023-01-15T12:30:00.000+00:00\"\n        }\n    ],\n    \"assignatures\": [\n        {\n            \"id\": 5,\n            \"name\": \"Math\",\n            \"code\": \"MATH101\",\n            \"hours\": \"100\",\n            \"credits\": \"4\",\n            \"prerequisites\": [\n                \"MATH100\"\n            ],\n            \"corequisites\": [\n                \"LAB101\"\n            ],\n            \"status\": \"Active\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/student/delete?id=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"student",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:52:54 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"firstName\": \"StudentName\",\n    \"lastName\": \"StudentLasName\",\n    \"email\": \"StudentName@StudentLasName.com\",\n    \"dateOfBirth\": \"1995-08-15T00:00:00.000+00:00\",\n    \"phoneNumber\": \"4385252221\",\n    \"grades\": [],\n    \"assignatures\": []\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Grades",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n  \"idProfessor\": 47,\r\n  \"idStudent\": 1,\r\n  \"idAssignature\": 5,\r\n  \"category\": \"Midterm Exam\",\r\n  \"assesmentWeight\": 0.4,\r\n  \"gradeValue\": 85.5,\r\n  \"dateSubmission\": \"2023-01-15T12:30:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/grade/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grade",
+								"save"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "save",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n  \"idProfessor\": 47,\r\n  \"idStudent\": 1,\r\n  \"idAssignature\": 5,\r\n  \"category\": \"Midterm Exam\",\r\n  \"assesmentWeight\": 0.4,\r\n  \"gradeValue\": 85.5,\r\n  \"dateSubmission\": \"2023-01-15T12:30:00.000Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/grade/save",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"grade",
+										"save"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 04:59:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"idProfessor\": 47,\n    \"idStudent\": 1,\n    \"idAssignature\": 5,\n    \"category\": \"Midterm Exam\",\n    \"assesmentWeight\": 0.4,\n    \"gradeValue\": 85.5,\n    \"dateSubmission\": \"2023-01-15T12:30:00.000+00:00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n   \"id\":1,\r\n  \"idProfessor\": 47,\r\n  \"idStudent\": 1,\r\n  \"idAssignature\": 5,\r\n  \"category\": \"Final\",\r\n  \"assesmentWeight\": 0.4,\r\n  \"gradeValue\": 85.5,\r\n  \"dateSubmission\": \"2023-01-15T12:30:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/grade/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grade",
+								"update"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n   \"id\":1,\r\n  \"idProfessor\": 47,\r\n  \"idStudent\": 1,\r\n  \"idAssignature\": 5,\r\n  \"category\": \"Final\",\r\n  \"assesmentWeight\": 0.4,\r\n  \"gradeValue\": 85.5,\r\n  \"dateSubmission\": \"2023-01-15T12:30:00.000Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/grade/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"grade",
+										"update"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 05:00:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"idProfessor\": 47,\n    \"idStudent\": 1,\n    \"idAssignature\": 5,\n    \"category\": \"Final\",\n    \"assesmentWeight\": 0.4,\n    \"gradeValue\": 85.5,\n    \"dateSubmission\": \"2023-01-15T12:30:00.000+00:00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "find",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/grade/findById?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"grade",
+										"findById"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 05:02:08 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"idProfessor\": 47,\n    \"idStudent\": 1,\n    \"idAssignature\": 5,\n    \"category\": \"Final\",\n    \"assesmentWeight\": 0.4,\n    \"gradeValue\": 85.5,\n    \"dateSubmission\": \"2023-01-15T12:30:00.000+00:00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/grade/delete?id=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"grade",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/grade/delete?id=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"grade",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 11 Dec 2023 05:02:47 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	]
+}
