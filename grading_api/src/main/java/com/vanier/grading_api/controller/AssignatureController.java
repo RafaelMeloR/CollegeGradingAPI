@@ -1,5 +1,6 @@
 package com.vanier.grading_api.controller;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,7 @@ public class AssignatureController {
         Optional<Assignature> assignature = assignatureService.findById(id);
         return assignature.map( 
             //Response if data is found
-            value -> new ResponseEntity<>(value, HttpStatus.ACCEPTED))
+            value -> new ResponseEntity<>(value, HttpStatus.FOUND))
             //Response when unsuccesful
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -49,11 +50,13 @@ public class AssignatureController {
     // Update assignature by id
     @PutMapping("/update")
     public ResponseEntity<Assignature> update(@RequestBody Assignature assignature) {
-        if(assignature.getId() == assignatureService.findById(assignature.getId()).get().getId()){
-            Assignature updatedAssignature = assignatureService.save(assignature);
-            return new ResponseEntity<>(updatedAssignature, HttpStatus.ACCEPTED);
+        Optional<Assignature> existingAssignatureFound = assignatureService.findById(assignature.getId());
+        if (existingAssignatureFound.isPresent()) {
+                Assignature updatedAssignature = assignatureService.save(assignature);
+                return new ResponseEntity<>(updatedAssignature, HttpStatus.ACCEPTED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     // Delete assignature by id

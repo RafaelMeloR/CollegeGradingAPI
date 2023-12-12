@@ -1,5 +1,6 @@
 package com.vanier.grading_api.controller;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +46,18 @@ public class GradeController {
     // Update grade by id
     @PutMapping("/update")
     public ResponseEntity<Grade> update(@RequestBody Grade grade) {
-        if (grade.getId() == gradeService.findById(grade.getId()).get().getId()) {
-            Grade updateGrade = gradeService.save(grade);
-            return new ResponseEntity<>(updateGrade, HttpStatus.ACCEPTED);
+        Optional<Grade> existingGradeOptional = gradeService.findById(grade.getId());
+        if (existingGradeOptional.isPresent()) {
+            Grade existingGrade = existingGradeOptional.get();
+            if (Objects.equals(grade.getId(), existingGrade.getId())) {
+                Grade updatedGrade = gradeService.save(existingGrade);
+                return new ResponseEntity<>(updatedGrade, HttpStatus.ACCEPTED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     // Delete grade by id
