@@ -1,4 +1,4 @@
-/*
+
 package com.vanier.grading_api.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 @Configuration
 public class ApplicationSecurityConfig {
 
-    private static final String API_URL_PATTERN = "/user";
+        private static final String API_URL_PATTERN = "/**";
 
     @Autowired
     public ApplicationSecurityConfig(PasswordEncoder passwordEncoder) {
@@ -34,6 +34,7 @@ public class ApplicationSecurityConfig {
         http.csrf(csrfConfigurer ->
                 csrfConfigurer.ignoringRequestMatchers(mvcMatcherBuilder.pattern(API_URL_PATTERN),
                         PathRequest.toH2Console()));
+
 
         http.headers(headersConfigurer ->
                 headersConfigurer.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
@@ -75,4 +76,3 @@ public class ApplicationSecurityConfig {
     }
         
 }
-*/
