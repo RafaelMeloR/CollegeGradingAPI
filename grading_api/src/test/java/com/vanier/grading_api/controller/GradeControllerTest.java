@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Base64;
 import java.util.Date;
 import java.util.Optional;
 
@@ -32,6 +33,11 @@ public class GradeControllerTest {
 
     @Autowired MockMvc mockMvc;
 
+    // Simulate basic authentication by adding username and password to the request
+    // headers
+    String username = "admin";
+    String password = "admin";
+
     @Test
     void testDelete() throws Exception {
         // Setup
@@ -45,7 +51,12 @@ public class GradeControllerTest {
 
         // Execute
         mockMvc.perform(
-                delete("/grade/delete?id=1")).andDo(print())
+                        delete("/grade/delete?id=1")
+                                        .header("Authorization",
+                                                        "Basic " + Base64.getEncoder().encodeToString(
+                                                                        (username + ":" + password).getBytes()))) // basic
+                        // authentication)
+                        .andDo(print())
         // Assertions
                 .andExpect(status().isOk());
     }
@@ -61,7 +72,12 @@ public class GradeControllerTest {
 
         // Execute
         mockMvc.perform(
-                get("/grade/findById?id=1")).andDo(print())
+                        get("/grade/findById?id=1")
+                                        .header("Authorization",
+                                                        "Basic " + Base64.getEncoder().encodeToString(
+                                                                        (username + ":" + password).getBytes()))) // basic
+                                                                                                                  // authentication
+                        .andDo(print())
         // Assert
                 .andExpect(status().isAccepted());
     }
@@ -79,7 +95,11 @@ public class GradeControllerTest {
         // Execute
         mockMvc.perform(
                 post("/grade/save").contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(grade)))
+                                        .content(new ObjectMapper().writeValueAsString(grade))
+                                        .header("Authorization",
+                                                        "Basic " + Base64.getEncoder().encodeToString(
+                                                                        (username + ":" + password).getBytes()))) // basic
+                                                                                                                  // authentication)
         // Assertions
                 .andExpect(status().isCreated())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.category").value("midterm"));
@@ -138,7 +158,11 @@ public class GradeControllerTest {
     mockMvc.perform(
             put("/grade/update")
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(new ObjectMapper().writeValueAsString(updatedGrade)))
+                                    .content(new ObjectMapper().writeValueAsString(updatedGrade))
+                                    .header("Authorization",
+                                                    "Basic " + Base64.getEncoder().encodeToString(
+                                                                    (username + ":" + password).getBytes()))) // basic
+                                                                                                              // authentication
             // Assert
             .andExpect(MockMvcResultMatchers.status().isAccepted())
             .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1L))

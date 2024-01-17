@@ -67,9 +67,14 @@ public class ApplicationSecurityConfig {
                 .roles("USER")
                 .build());
 
+        manager.createUser(User.withUsername("professor")
+                        .password(bCryptPasswordEncoder.encode("professor"))
+                        .roles("USER", "PROFESSOR")
+                        .build());
+
         manager.createUser(User.withUsername("admin")
                 .password(bCryptPasswordEncoder.encode("admin"))
-                .roles("USER", "ADMIN")
+                        .roles("USER", "PROFESSOR", "ADMIN")
                 .build());
 
         return manager;

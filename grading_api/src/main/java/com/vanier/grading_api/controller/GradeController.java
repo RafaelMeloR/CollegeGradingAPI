@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vanier.grading_api.entity.Grade;
 import com.vanier.grading_api.service.GradeService;
+import com.vanier.grading_api.service.StudentService;
 
 @RestController
 @RequestMapping("grade")
@@ -24,6 +25,8 @@ public class GradeController {
 
     @Autowired
     private GradeService gradeService;
+    @Autowired
+    private StudentService studentService;
 
     // Save grade
     @PostMapping("/save")
@@ -45,20 +48,36 @@ public class GradeController {
 
     // Update grade by id
     @PutMapping("/update")
-    public ResponseEntity<Grade> update(@RequestBody Grade grade) {
-        Optional<Grade> existingGradeOptional = gradeService.findById(grade.getId());
+    public ResponseEntity<Grade> update(@RequestBody Grade updatedGrade) {
+        Optional<Grade> existingGradeOptional = gradeService.findById(updatedGrade.getId());
+
         if (existingGradeOptional.isPresent()) {
             Grade existingGrade = existingGradeOptional.get();
-            if (Objects.equals(grade.getId(), existingGrade.getId())) {
-                Grade updatedGrade = gradeService.save(existingGrade);
-                return new ResponseEntity<>(updatedGrade, HttpStatus.ACCEPTED);
+
+            // Check if the IDs match before updating
+            if (Objects.equals(updatedGrade.getId(), existingGrade.getId())) {
+                existingGrade = updatedGrade;
+
+                // Save the updated grade
+                Grade savedGrade = existingGrade;
+                studentService.findById(savedGrade.getIdStudent()).ifPresent(student -> {
+                    student.getGrades().forEach(grade -> {
+                        if (grade.getId().equals(savedGrade.getId())) {
+                            grade = savedGrade;
+                        }
+                    });
+                });
+                return new ResponseEntity<>(savedGrade, HttpStatus.ACCEPTED);
             } else {
-                return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+                // IDs don't match
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         } else {
+            // Grade not found
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 
     // Delete grade by id
     @DeleteMapping("/delete")

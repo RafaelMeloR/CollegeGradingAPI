@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Base64;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -40,6 +41,9 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    String username = "admin";
+    String password = "admin";
+
     @Test
     void testDeleteProfessor() throws Exception {
         // Setup
@@ -56,7 +60,12 @@ public class UserControllerTest {
 
         // Execute
         mockMvc.perform(
-                delete("/professor/delete?id=1")).andDo(print())
+                        delete("/professor/delete?id=1")
+                                        .header("Authorization",
+                                                        "Basic " + Base64.getEncoder().encodeToString(
+                                                                        (username + ":" + password).getBytes()))) // basic
+                                                                                                                  // authentication
+                        .andDo(print())
                 // Assertions
                 .andExpect(status().isAccepted())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value("John"));
@@ -80,7 +89,12 @@ public class UserControllerTest {
 
         // Execute
         mockMvc.perform(
-                delete("/student/delete?id=1")).andDo(print())
+                        delete("/student/delete?id=1")
+                                        .header("Authorization",
+                                                        "Basic " + Base64.getEncoder().encodeToString(
+                                                                        (username + ":" + password).getBytes()))) // basic
+                                                                                                                  // authentication
+                        .andDo(print())
         // Assertions
                 .andExpect(status().isNotModified());
     }
@@ -100,7 +114,12 @@ public class UserControllerTest {
 
         // Execute
         mockMvc.perform(
-                get("/professor/findById?id=1")).andDo(print())
+                        get("/professor/findById?id=1")
+                                        .header("Authorization",
+                                                        "Basic " + Base64.getEncoder().encodeToString(
+                                                                        (username + ":" + password).getBytes()))) // basic
+                                                                                                                  // authentication
+                        .andDo(print())
         // Assert
                 .andExpect(status().isAccepted());
 
@@ -114,7 +133,12 @@ public class UserControllerTest {
 
         // Execute
         mockMvc.perform(
-                get("/student/findById?id=1")).andDo(print())
+                        get("/student/findById?id=1")
+                                        .header("Authorization",
+                                                        "Basic " + Base64.getEncoder().encodeToString(
+                                                                        (username + ":" + password).getBytes()))) // basic
+                                                                                                                  // authentication
+                        .andDo(print())
         // Assert
                 .andExpect(status().isNotFound());
     }
@@ -135,7 +159,11 @@ public class UserControllerTest {
         // Execute
         mockMvc.perform(
                 post("/professor/save").contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(professor)))
+                                        .content(new ObjectMapper().writeValueAsString(professor))
+                                        .header("Authorization",
+                                                        "Basic " + Base64.getEncoder().encodeToString(
+                                                                        (username + ":" + password).getBytes()))) // basic
+                                                                                                                  // authentication
         // Assertions
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value("John"));
@@ -165,7 +193,11 @@ public class UserControllerTest {
         mockMvc.perform(
                 put("/professor/update")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(updatedProfessor)))
+                                        .content(new ObjectMapper().writeValueAsString(updatedProfessor))
+                                        .header("Authorization",
+                                                        "Basic " + Base64.getEncoder().encodeToString(
+                                                                        (username + ":" + password).getBytes()))) // basic
+                                                                                                                  // authentication
         // Assert
                 .andExpect(MockMvcResultMatchers.status().isAccepted());
                 //.andExpect(MockMvcResultMatchers.jsonPath("$.firstName").value("Updated John"));

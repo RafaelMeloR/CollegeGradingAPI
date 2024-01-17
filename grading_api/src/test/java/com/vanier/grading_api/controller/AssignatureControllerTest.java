@@ -6,8 +6,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+import java.util.Base64;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -35,6 +35,11 @@ public class AssignatureControllerTest {
 
     @Autowired MockMvc mockMvc;
 
+    // Simulate basic authentication by adding username and password to the request
+    // headers
+    String username = "admin";
+    String password = "admin";
+
     @Test
     void testDelete() throws JsonProcessingException, Exception {
         //Setup
@@ -51,9 +56,14 @@ public class AssignatureControllerTest {
         .thenReturn(Optional.of(assignature));
         Mockito.doNothing().when(service).delete(Mockito.anyLong());
 
+
         //Execute
         mockMvc.perform(
-            delete("/assignature/delete?id=1")).andDo(print())
+                delete("/assignature/delete?id=1")
+                        .header("Authorization",
+                                "Basic " + Base64.getEncoder().encodeToString((username + ":" + password).getBytes()))) // basic
+                                                                                                                        // authentication
+                .andDo(print())
         //Assertions
             .andExpect(status().isAccepted())
             .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("software dev")); 
@@ -73,7 +83,11 @@ public class AssignatureControllerTest {
 
         //Execute
         mockMvc.perform(
-            get("/assignature/findById?id=1")).andDo(print())
+                get("/assignature/findById?id=1")
+                        .header("Authorization",
+                                "Basic " + Base64.getEncoder().encodeToString((username + ":" + password).getBytes()))) // basic
+                                                                                                                        // authentication
+                .andDo(print())
         //Assert
         .andExpect(status().isFound());
     }
@@ -95,7 +109,10 @@ public class AssignatureControllerTest {
         //Execute
         mockMvc.perform(
             post("/assignature/save").contentType(MediaType.APPLICATION_JSON)
-                    .content(new ObjectMapper().writeValueAsString(assignature)))
+                        .content(new ObjectMapper().writeValueAsString(assignature))
+                        .header("Authorization",
+                                "Basic " + Base64.getEncoder().encodeToString((username + ":" + password).getBytes()))) // basic
+                                                                                                                        // authentication)
         //Assertions
             .andExpect(status().isCreated())
             .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("software dev"));
@@ -126,7 +143,11 @@ public class AssignatureControllerTest {
         mockMvc.perform(
                 put("/assignature/update")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(updatedAssignature))).andDo(print())                           
+                        .content(new ObjectMapper().writeValueAsString(updatedAssignature))
+                        .header("Authorization",
+                                "Basic " + Base64.getEncoder().encodeToString((username + ":" + password).getBytes()))) // basic
+                                                                                                                        // authentication)
+                .andDo(print())
         //Assert
                 .andExpect(MockMvcResultMatchers.status().isAccepted());
                 //.andExpect(MockMvcResultMatchers.jsonPath("$.name").value("software dev"))
